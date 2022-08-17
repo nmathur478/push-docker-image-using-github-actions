@@ -35,7 +35,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: .
-        tags: $github_run_number
+        tags: ${{ github.run_number }}
         push: ${{ github.ref == 'refs/heads/main' }}
     - name: Image Digest
       run: echo ${{ steps.docker_build.outputs.digest }}
