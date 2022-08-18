@@ -39,6 +39,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ ${{GITHUB_REF_NAME}}.{{GITHUB_RUN_NUMBER}} }}
+          tags: ${{ env.IMAGE_NAME }}
+          #tag: $GITHUB_REF_NAME.$GITHUB_RUN_NUMBER
           
      
