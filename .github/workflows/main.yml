@@ -31,6 +31,6 @@ jobs:
       - name: Set variable for release
         uses: actions/checkout@v3
         run: |
-          echo ${{ github.run_number }}
+          echo ${{ github.ref }}
           
           
