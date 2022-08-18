@@ -34,5 +34,5 @@ jobs:
           echo ${{ github_run_number }}
           echo ${{ github_run_id }}
           echo ${{ github_ref }}
-          echo ${{ github_run_atte
+          echo ${{ github_run_attempt }}
           
