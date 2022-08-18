@@ -36,10 +36,8 @@ jobs:
           
       - name: Creating tag for image
         run: echo "DOCKER_IMAGE_TAG= $GITHUB_REF_NAME.$GITHUB_RUN_NUMBER"
+        
+      - name: Echo variable
+        run: env | sort
           
-      - name: Build and push Docker image
-        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
-        with:
-          context: .
-          push: true
-          tags: ${{ DOCKER_IMAGE_TAG }}
+     
