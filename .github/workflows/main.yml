@@ -31,8 +31,6 @@ jobs:
       - name: Set variable for release
         uses: actions/checkout@v3
         run: |
-          echo ${{ github_run_number }}
-          echo ${{ github_run_id }}
-          echo ${{ github_ref }}
-          echo ${{ github_run_attempt }}
+          echo ${{ github.run_number }}
+          
           
