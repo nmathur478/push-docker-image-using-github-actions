@@ -9,7 +9,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  DOCKER_IMAGE_TAG: ${{ github.ref_name }}
+  DOCKER_IMAGE_TAG: ${{ github.ref_name }}.{{ github.run_number }}
 
 jobs:
   build-and-push-image:
