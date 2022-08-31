@@ -5,7 +5,6 @@ on:
      inputs:
       value:
         description: "Type Yes or No"
-        default: "Yes"
         required: true
   workflow_run:
     workflows: ["Create and publish a Docker image"]
