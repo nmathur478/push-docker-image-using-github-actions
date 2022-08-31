@@ -1,0 +1,17 @@
+name: Trigger the pipeline just after first workflow
+
+on:
+  workflow_run:
+    workflows: ["Create and publish a Docker image"]
+    types:
+      - completed
+      
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    - name: Triggered the worflow
+      run: echo "Triggered the worflow"
+    
