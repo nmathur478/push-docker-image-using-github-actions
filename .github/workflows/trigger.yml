@@ -13,6 +13,8 @@ on:
     workflows: ["Create and publish a Docker image"]
     types:
       - completed
+  repository_dispatch:
+    types: ["complete-workflow"]
         
       
       
@@ -22,8 +24,11 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.client_payload.ref }}
     - name: Triggered the worflow
       run: echo "Triggered the worflow"
     - name: Printing value from another workflow
-      run: echo "${{ github.event.client_payload.test_sha }}"
+      run: echo "${{ github.event.client_payload.sha }}"
+      
     
