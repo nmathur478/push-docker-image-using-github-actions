@@ -24,4 +24,6 @@ jobs:
       uses: actions/checkout@v3
     - name: Triggered the worflow
       run: echo "Triggered the worflow"
+    - name: Printing value from another workflow
+      run: echo $DOCKER_IMAGE_TAG
     
