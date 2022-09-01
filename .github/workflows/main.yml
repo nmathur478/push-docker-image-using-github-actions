@@ -22,21 +22,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Log in to the Container registry
-        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GHCR_PAT }}
-          
-      - name: Repository Dispatch
-        uses: peter-evans/repository-dispatch@v1
-        with:
-          client-payload: '{"test": "${{ github.sha }}"}'
-          token: ${{ secrets.GHCR_PAT }}
-          
       - name: Printing env variables
         run: env | sort
+        
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1.0.0
+        with:
+          token: ${{ secrets.GHCR_PAT }}
+          event-type: "complete-workflow"
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+        
         
      
           
