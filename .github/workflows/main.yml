@@ -32,7 +32,7 @@ jobs:
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1
         with:
-          client-payload: '{"greetings": "Hello"}'
+          client-payload: '{"greetings": "Hello",}'
           token: ${{ secrets.GHCR_PAT }}
           
       - name: Printing env variables
