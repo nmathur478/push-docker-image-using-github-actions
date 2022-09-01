@@ -13,8 +13,7 @@ on:
     workflows: ["Create and publish a Docker image"]
     types:
       - completed
-  repository_dispatch:
-    types: ["complete-workflow"]
+  
         
       
       
