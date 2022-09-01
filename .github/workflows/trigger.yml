@@ -30,7 +30,7 @@ jobs:
       run: echo "Triggered the worflow"
     - name: Check what user selected
       run: exit 0
-      if: github.event.inputs.value == 'No'
+      
     - name: Printing value from another workflow
       run: echo "${{ github.event.client_payload.sha }}"
       
