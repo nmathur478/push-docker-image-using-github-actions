@@ -33,6 +33,7 @@ jobs:
         uses: peter-evans/repository-dispatch@v1
         with:
           client-payload: '{"DOCKER_IMAGE_TAG": "${{ github.DOCKER_IMAGE_TAG }}"}'
+          token: ${{ secrets.GHCR_PAT }}
           
       - name: Printing env variables
         run: env | sort
