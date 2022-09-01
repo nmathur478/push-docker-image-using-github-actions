@@ -34,6 +34,7 @@ jobs:
       run: echo "${{ github.event.client_payload.sha }}"
       
   deployment-not-done:
+    if: github.event.inputs.value == 'No'
     runs-on: ubuntu-latest
     steps:
     - name: Deployment not done
