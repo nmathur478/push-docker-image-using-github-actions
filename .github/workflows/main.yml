@@ -29,9 +29,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_PAT }}
           
-     - name: Repository Dispatch
-       uses: peter-evans/repository-dispatch@v1
-       with:
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1
+        with:
           client-payload: '{"DOCKER_IMAGE_TAG": "${{ github.DOCKER_IMAGE_TAG }}"}'
           
       - name: Printing env variables
