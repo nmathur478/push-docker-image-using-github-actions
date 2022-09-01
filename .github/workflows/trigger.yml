@@ -19,7 +19,8 @@ on:
       
       
 jobs:
-  notify:
+  trigger-on-completion:
+    if: github.event.inputs.value == 'Yes'
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
@@ -28,9 +29,7 @@ jobs:
         ref: ${{ github.event.client_payload.ref }}
     - name: Triggered the worflow
       run: echo "Triggered the worflow"
-    - name: Check what user selected
-      run: exit 
-      
+    
     - name: Printing value from another workflow
       run: echo "${{ github.event.client_payload.sha }}"
       
