@@ -33,7 +33,11 @@ jobs:
           tags:
             type=semver,pattern={{version}}
             
-      - name: Print values
+      - name: Get the tags value
+        env:
+          RELEASE_TAG: ${{ steps.meta.outputs.tags }}
+          
+      - name: Echoing
         run: env | sort
           
      
