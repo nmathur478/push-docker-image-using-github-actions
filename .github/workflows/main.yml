@@ -31,6 +31,13 @@ jobs:
             ghcr.io/${{ github.repository }}
           tags:
             type=semver,pattern={{version}}
-    
+      - name: Trigger jenkins pipeline
+        uses: GoldenspearLLC/build-jenkins-job@master
+        with:
+          jenkins-url: https://jenkins.calance.work
+          jenkins-token: 1132bd351f03b4cb57d79fd4785768c1bd
+          user: ppsinghcalance
+          job-path: job/kubernetes-deploy-on-nutanix
+          job-params: "{'SERVICE_NAME': '${{ github.event.repository.name }}', 'CLUSTER_ENVIRONMENT': '${{ github.event.inputs.cluster_environment }}', 'VERSION': '${{ github.event.inputs.deployment_version }}', 'NAMESPACE': '${{ secrets.NAMESPACE }}'}"     
           
      
