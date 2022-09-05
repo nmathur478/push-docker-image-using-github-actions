@@ -32,15 +32,17 @@ jobs:
           tags:
             type=semver,pattern={{version}}
       - name: Trigger jenkins pipeline
-        uses: GoldenspearLLC/build-jenkins-job@master
+        id: jenkins_output
+        uses: enflo/jenkins-action@master
         with:
-          jenkins-url: https://jenkins.calance.work
-          jenkins-token: 1132bd351f03b4cb57d79fd4785768c1bd
+          url: https://jenkins.calance.work
+          token: 1132bd351f03b4cb57d79fd4785768c1bd
           user: ppsinghcalance
-          job-path: /job/kubernetes-deploy-on-nutanix
-          job-params: "{'SERVICE_NAME': '${{ github.event.repository.name }}', 'CLUSTER_ENVIRONMENT': '${{ github.event.inputs.cluster_environment }}', 'VERSION': '${{ github.event.inputs.deployment_version }}', 'NAMESPACE': '${{ secrets.NAMESPACE }}'}"
-          
+          job: /job/kubernetes-deploy-on-nutanix
+          parameters: "{'SERVICE_NAME': '${{ github.event.repository.name }}', 'CLUSTER_ENVIRONMENT': '${{ github.event.inputs.cluster_environment }}', 'VERSION': '${{ github.event.inputs.deployment_version }}', 'NAMESPACE': '${{ secrets.NAMESPACE }}'}" 
       - name: Get job status
-        run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
+        run: echo "Job status is ${{ steps.jenkins_output.outputs.* }}"
+          
+     
           
      
