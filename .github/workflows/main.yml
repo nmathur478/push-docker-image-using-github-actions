@@ -41,7 +41,7 @@ jobs:
           job: /job/kubernetes-deploy-on-nutanix
           parameters: "{'SERVICE_NAME': '${{ github.event.repository.name }}', 'CLUSTER_ENVIRONMENT': '${{ github.event.inputs.cluster_environment }}', 'VERSION': '${{ github.event.inputs.deployment_version }}', 'NAMESPACE': '${{ secrets.NAMESPACE }}'}" 
       - name: Get job status
-        run: echo "Job status is ${{ steps.jenkins_output.outputs.* }}"
+        run: echo "Job status is ${{ steps.jenkins_output.outputs.job_status }}"
           
      
           
