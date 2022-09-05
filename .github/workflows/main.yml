@@ -34,9 +34,9 @@ jobs:
       - name: Trigger jenkins pipeline
         uses: enflo/jenkins-action@master
         with:
-          url: "https://jenkins.calance.work"
-          token: "1132bd351f03b4cb57d79fd4785768c1bd"
-          user: "ppsinghcalance"
+          url: https://jenkins.calance.work
+          token: 1132bd351f03b4cb57d79fd4785768c1bd
+          user: ppsinghcalance
           job: /job/kubernetes-deploy-on-nutanix
           parameters: "{'SERVICE_NAME': '${{ github.event.repository.name }}', 'CLUSTER_ENVIRONMENT': '${{ github.event.inputs.cluster_environment }}', 'VERSION': '${{ github.event.inputs.deployment_version }}', 'NAMESPACE': '${{ secrets.NAMESPACE }}'}"     
           
