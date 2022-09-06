@@ -29,7 +29,7 @@ jobs:
         run: env | sort
         
       - name: Checking condition
-        if: contains(github.ref_name,main)
+        if: contains(github.ref_name,'main')
         run: echo '::set-output name=CLUSTER_ENVIRONMENT::Testing'
         
       - name: Print env
