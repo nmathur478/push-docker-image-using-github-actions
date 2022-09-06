@@ -6,6 +6,8 @@ on:
       - v[0-9]+.[0-9]+.[0-9]+-rc[0-9]
       - v[0-9]+.[0-9]+.[0-9]+
     branches: ["main"]
+env:
+  CLUSTER_ENVIRONMENT: "Production"
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
@@ -23,26 +25,15 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
-        with:
-          images: |
-            ghcr.io/${{ github.repository }}
-          tags:
-            type=semver,pattern={{version}}
-      - name: Trigger jenkins pipeline
-        id: jenkins_output
-        uses: enflo/jenkins-action@master
-        with:
-          url: https://jenkins.calance.work
-          token: 1132bd351f03b4cb57d79fd4785768c1bd
-          user: ppsinghcalance
-          job: /job/kubernetes-deploy-on-nutanix
-          parameters: "{'SERVICE_NAME': '${{ github.event.repository.name }}', 'CLUSTER_ENVIRONMENT': '${{ github.event.inputs.cluster_environment }}', 'VERSION': '${{ github.event.inputs.deployment_version }}', 'NAMESPACE': '${{ secrets.NAMESPACE }}'}" 
-      - name: Get job status
-        run: echo "Job status is ${{ steps.jenkins_output.outputs.job_status }}"
-          
-     
+      - name: Print env
+        run: env | sort
+        
+      - name: Checking condition
+        if: contains(github.ref_name,"main")
+        run: echo '::set-output name=CLUSTER_ENVIRONMENT::Testing'
+        
+      - name: Print env
+        run: env | sort
+      
           
      
