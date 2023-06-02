@@ -1,4 +1,4 @@
-FROM python:3.6
+FROM openjdk:3.6
 
 ENV PYTHONDONTWRITEBYTECODE 1
 
@@ -10,4 +10,4 @@ WORKDIR /code
 
 RUN pip install -r requirements.txt
 
-CMD ["python", "app.py"]
+CMD ["openjdk", "app.py"]
